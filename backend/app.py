@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 import ipaddress
+import requests 
 
 app = Flask(__name__)
+
 
 def ipv4_to_ipv6(ipv4_addr):
     """Convert IPv4 to IPv6-mapped address."""
@@ -78,6 +80,44 @@ def convert():
             })
     else:
         return jsonify({"error": "Unknown IP type"}), 400
+
+
+#geolocatien endpoint
+@app.route('/geolocate', methods=['POST'])
+def geolocate():
+    """Fetch geolocation info for an IP using ip-api.com."""
+    data = request.get_json()
+    ip = data.get("ip", "").strip()
+
+    # Validate IP before lookup
+    valid_check = validate_ip(ip)
+    if not valid_check["valid"]:
+        return jsonify({"error": "Invalid IP address"}), 400
+
+    try:
+        url = f"http://ip-api.com/json/{ip}"
+        response = requests.get(url, timeout=5)
+        info = response.json()
+
+        if info.get("status") == "fail":
+            return jsonify({"error": info.get("message", "Lookup failed")}), 400
+
+        result = {
+            "ip": info.get("query"),
+            "country": info.get("country"),
+            "region": info.get("regionName"),
+            "city": info.get("city"),
+            "isp": info.get("isp"),
+            "timezone": info.get("timezone"),
+            "lat": info.get("lat"),
+            "lon": info.get("lon"),
+        }
+
+        return jsonify(result)
+
+    except requests.RequestException as e:
+        return jsonify({"error": f"Request failed: {str(e)}"}), 500
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5050, debug=True)
