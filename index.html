@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IP Converter & Validator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+     <div class="container">
+    <h1>IP Converter & Validator</h1>
+
+    <input type="text" id="ipInput" placeholder="Enter an IP address">
+    <div class="buttons">
+      <button onclick="validateIP()">Validate</button>
+      <button onclick="convertIP()">Convert</button>
+      <button onclick="geolocateIP()">Geolocate</button>
+    </div>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    async function validateIP() {
+      const ip = document.getElementById("ipInput").value;
+      const response = await fetch("/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ip })
+      });
+      const data = await response.json();
+      document.getElementById("output").innerHTML =
+        `<p><strong>Input:</strong> ${data.input}</p>
+         <p><strong>Valid:</strong> ${data.valid}</p>
+         <p><strong>Version:</strong> ${data.version || "N/A"}</p>`;
+    }
+
+    async function convertIP() {
+      const ip = document.getElementById("ipInput").value;
+      const response = await fetch("/convert", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ip })
+      });
+      const data = await response.json();
+      document.getElementById("output").innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    }
+
+    async function geolocateIP() {
+      const ip = document.getElementById("ipInput").value;
+      const response = await fetch("/geolocate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ip })
+      });
+      const data = await response.json();
+      document.getElementById("output").innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+    }
+  </script>
+
+</body>
+</html>
