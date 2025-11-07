@@ -1,7 +1,7 @@
 import requests
 import json
 
-BASE_URL = "http://127.0.0.1:5050"  # Flask backend address
+BASE_URL = "http://127.0.0.1:5050"  
 
 def print_menu():
     print("\n==============================")
@@ -23,7 +23,7 @@ def validate_ip():
         print(f"Valid: {data['valid']}")
         print(f"Version: {data['version']}")
     else:
-        print("❌ Error: Could not validate IP.")
+        print("Error: Could not validate IP.")
 
 def convert_ip():
     ip = input("Enter an IP address: ").strip()
@@ -33,7 +33,7 @@ def convert_ip():
         print("\n🔁 Conversion Result:")
         print(json.dumps(data, indent=4))
     else:
-        print(f"❌ Error: {data.get('error', 'Conversion failed')}")
+        print(f"Error: {data.get('error', 'Conversion failed')}")
 
 def geolocate_ip():
     ip = input("Enter an IP address: ").strip()
@@ -43,7 +43,7 @@ def geolocate_ip():
         print("\n🌍 Geolocation Info:")
         print(json.dumps(data, indent=4))
     else:
-        print(f"❌ Error: {data.get('error', 'Lookup failed')}")
+        print(f"Error: {data.get('error', 'Lookup failed')}")
 
 def main():
     while True:
@@ -60,16 +60,16 @@ def main():
             print("👋 Exiting. Goodbye!")
             break
         else:
-            print("❌ Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     print("Connecting to Flask API...")
     try:
         response = requests.get(BASE_URL)
         if response.status_code == 200:
-            print("✅ Connected successfully!")
+            print("Connected successfully!")
             main()
         else:
-            print("⚠️ Flask API not responding properly.")
+            print("Flask API not responding properly.")
     except requests.exceptions.ConnectionError:
-        print("❌ Unable to connect to Flask backend. Make sure it's running!")
+        print("Unable to connect to Flask backend. Make sure it's running!")

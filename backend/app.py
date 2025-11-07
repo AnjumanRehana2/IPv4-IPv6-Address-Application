@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 import ipaddress
 import requests 
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 def ipv4_to_ipv6(ipv4_addr):
     """Convert IPv4 to IPv6-mapped address."""
@@ -43,7 +44,13 @@ def validate():
     data = request.get_json()
     ip = data.get('ip', '')
     result = validate_ip(ip)
-    return jsonify({"input": ip, **result})
+    # Map version number to string
+    version_str = None
+    if result["version"] == 4:
+        version_str = "IPv4"
+    elif result["version"] == 6:
+        version_str = "IPv6"
+    return jsonify({"input": ip, "valid": result["valid"], "version": version_str})
 
 @app.route('/convert', methods=['POST'])
 def convert():

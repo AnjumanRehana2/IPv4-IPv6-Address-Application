@@ -1,0 +1,33 @@
+name: Flask App CI   # 👈 This is just the name that appears in GitHub Actions tab
+
+# 👇 This tells GitHub when to run the workflow
+on:
+  push:
+    branches: [ main ]        # Run on every push to main
+  pull_request:
+    branches: [ main ]        # Also run when a pull request is made to main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest    # 👈 Uses a Linux virtual machine
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      # 👆 Pulls your repo code into the runner machine
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+      # 👆 Installs Python 3.11 in that virtual environment
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pytest
+      # 👆 Installs all your Python packages (Flask, CORS, etc.)
+
+    - name: Run tests
+      run: pytest -v
+      # 👆 Runs pytest and shows verbose output (test results)
