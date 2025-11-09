@@ -1,18 +1,18 @@
-# 🌐 IPv4 ↔ IPv6 Utility App
+# IPv4 ↔ IPv6 Utility App
 
 A modern, full-stack application to validate, convert, and geolocate IPv4 and IPv6 addresses. Built with Python (Flask) backend, HTML/CSS/JS frontend, and automated testing & CI using pytest and GitHub Actions.
 
 ## Features
 
-* ✅ Validate IPv4 and IPv6 addresses
-* 🔁 Convert between IPv4 ↔ IPv6 formats
-* 🌍 Geolocate IP addresses (country, city, ISP, timezone)
-* 🖥️ CLI frontend for terminal testing
-* 🌐 Modern web frontend with responsive dark-glass UI
-* 🧪 Automated backend tests with `pytest`
-* ⚡ Continuous Integration (CI) using GitHub Actions
+* Validate IPv4 and IPv6 addresses
+* Convert between IPv4 ↔ IPv6 formats
+* Geolocate IP addresses (country, city, ISP, timezone)
+* CLI frontend for terminal testing
+* Modern web frontend with responsive dark-glass UI
+* Automated backend tests with `pytest`
+* Continuous Integration (CI) using GitHub Actions
 
-## 🧑‍💻 Team Roles
+## Team Roles
 
 | Member | Role | Responsibilities |
 |--------|------|------------------|
@@ -21,7 +21,7 @@ A modern, full-stack application to validate, convert, and geolocate IPv4 and IP
 | Member 3 | Frontend Developer / UI Designer | Designs CLI & web UI for easy interaction with backend. |
 | Member 4 | Tester / DevOps Engineer | Writes automated tests, sets up CI/CD, manages deployment. |
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 * **Backend:** Python 3, Flask, Flask-CORS, Requests
 * **Frontend:** HTML, CSS, JavaScript
@@ -29,27 +29,27 @@ A modern, full-stack application to validate, convert, and geolocate IPv4 and IP
 * **Automation:** GitHub Actions (CI)
 * **Version Control:** Git / GitHub
 
-## 🏗️ Setup & Installation
+## Setup & Installation
 
-### 1️⃣ Clone the repository
+### Clone the repository
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/<YOUR_REPO>.git
-cd <YOUR_REPO>
+git clone https://github.com/<AnjumanRehana2>/<IPv4-IPv6-Address-Application>.git
+cd <IPv4-IPv6-Address-Application>
 ```
 
-### 2️⃣ Create a virtual environment
+### Create a virtual environment
 ```bash
 python3 -m venv venv
 source venv/bin/activate    # Linux/Mac
 venv\Scripts\activate       # Windows
 ```
 
-### 3️⃣ Install dependencies
+### Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Run the Flask backend
+### Run the Flask backend
 ```bash
 python3 app.py
 ```
@@ -57,17 +57,17 @@ python3 app.py
 * Flask backend runs on `http://127.0.0.1:5050`
 * CORS is enabled for web frontend
 
-### 5️⃣ Run CLI frontend (optional)
+### Run CLI frontend (optional)
 ```bash
 python3 cli_app.py
 ```
 
-### 6️⃣ Run Web Frontend
+### Run Web Frontend
 
 * Open `index.html` in your browser
 * Enter any IPv4 or IPv6 address and test Validate / Convert / Geolocate
 
-## 🧪 Running Tests
+## Running Tests
 ```bash
 pytest -v
 ```
@@ -75,12 +75,12 @@ pytest -v
 * Validates your endpoints automatically
 * Tests IPv4, IPv6, conversion, and invalid IP handling
 
-## ⚡ GitHub Actions CI
+## GitHub Actions CI
 
 * Runs all tests automatically on push or pull request to `main` branch
 * Ensures code quality and prevents breaking changes
 
-## 🌐 Example Test IPs
+## Example Test IPs
 
 | Type | IP | Notes |
 |------|-----|-------|
@@ -90,12 +90,8 @@ pytest -v
 | IPv6 | 2606:4700:4700::1111 | Cloudflare |
 | IPv6 | 2405:200:8000::1 | Nepal Telecom |
 
-## 🎨 Screenshots
 
-* **CLI Frontend:** Simple terminal interface for quick testing
-* **Web Frontend:** Modern, dark-glass design with syntax-highlighted JSON output
-
-## 📦 Folder Structure
+## Folder Structure
 ```
 project/
 │
@@ -117,7 +113,7 @@ project/
 * All results are JSON formatted and syntax-highlighted in the web UI.
 * CI/CD ensures that new changes won't break the application.
 
-## 🔗 References
+## References
 
 * [Flask Documentation](https://flask.palletsprojects.com/)
 * [Flask-CORS](https://flask-cors.readthedocs.io/)
