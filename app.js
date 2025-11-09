@@ -1,4 +1,7 @@
 const BASE_URL = "http://127.0.0.1:5050";
+
+//just uncomment line number 4 to user deployed server
+//const BASE_URL = "https://ipv4-ipv6-address-application-1.onrender.com "
 const resultBox = document.getElementById("resultBox");
 
 document.getElementById("validateBtn").addEventListener("click", () => handleAction("/validate"));
