@@ -44,13 +44,7 @@ def validate():
     data = request.get_json()
     ip = data.get('ip', '')
     result = validate_ip(ip)
-    # Map version number to string
-    version_str = None
-    if result["version"] == 4:
-        version_str = "IPv4"
-    elif result["version"] == 6:
-        version_str = "IPv6"
-    return jsonify({"input": ip, "valid": result["valid"], "version": version_str})
+    return jsonify({"input": ip, **result})
 
 @app.route('/convert', methods=['POST'])
 def convert():
@@ -126,5 +120,6 @@ def geolocate():
         return jsonify({"error": f"Request failed: {str(e)}"}), 500
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5050, debug=True)
+# Comment out the Flask development server run block for production Docker usage
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=5050, debug=True)
