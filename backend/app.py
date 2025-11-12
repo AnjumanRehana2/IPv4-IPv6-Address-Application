@@ -44,7 +44,13 @@ def validate():
     data = request.get_json()
     ip = data.get('ip', '')
     result = validate_ip(ip)
-    return jsonify({"input": ip, **result})
+    # Map version number to string for API response
+    version_str = None
+    if result["version"] == 4:
+        version_str = "IPv4"
+    elif result["version"] == 6:
+        version_str = "IPv6"
+    return jsonify({"input": ip, "valid": result["valid"], "version": version_str})
 
 @app.route('/convert', methods=['POST'])
 def convert():
